@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title></title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   </head>
+   <body>
+      <!--<div id = "department-contents"> </div>-->
+      <script>
+      function populateDept(){
+
+         $.ajax({
+            type: 'GET',
+            url: 'https://dl.dropboxusercontent.com/s/sslmd5y53uusgfx/depts.json',
+            data: { get_param: 'value' },
+            dataType: 'json',
+            success: function (data) {
+                  //go through all main departments
+                 $.each(data, function(index, element) {
+                    var classAcr ="." + element.acronym;
+                    $('body').append($('<div>').addClass(element.acronym + ""));
+                    $(classAcr).css({"border":"1px solid black", "width":"35%", "text-align":"left", "padding":"50px","margin":"auto"});
+
+                     $(classAcr).append($('<th>', {
+                         text: element.name
+                     }));
+                     $(classAcr).append($('<th>', {
+                         text: element.acronym
+                     }));
+                     for (var i = 0; i < element.departments.length; i++) {
+                        $(classAcr).append($('<tr>'));
+                        $(classAcr).append($('<td>', {
+                            text: element.departments[i].name
+                        }));
+                        $(classAcr).append($('<td>', {
+                            text: element.departments[i].acronym
+                        }));
+
+                     }
+
+                 });
+                 $('div').css("border", "1px solid black");
+                 $('div').css("width", "35%");
+                 $('div').css("text-align", "left");
+                 $('div').css("padding", "50px");
+                 $('td').css("padding", "10px");
+                 $('th').css("padding-right", "10px");
+                 $('div').css("margin", "auto");
+
+            }
+         });
+      }
+         populateDept();
+
+
+      </script>
+
+   </body>
+</html>
