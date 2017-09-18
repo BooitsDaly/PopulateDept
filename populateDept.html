@@ -1,6 +1,5 @@
 <script>
       function populateDept(){
-
          $.ajax({
             type: 'GET',
             url: 'https://dl.dropboxusercontent.com/s/sslmd5y53uusgfx/depts.json',
@@ -22,9 +21,7 @@
                         })).append($('<td>', {
                             text: element.departments[i].acronym
                         })));
-
                      }
-
                  });
             }
          });
