@@ -10,11 +10,11 @@
                  $.each(data, function(index, element) {
                     var classAcr ="." + element.acronym;
                     $('#content').prepend($('<table class="aui">').addClass(element.acronym + ""));
-                    $(classAcr).append($('<thead>').css("text-align", "left").append($('<th>', {
+                    $(classAcr).append($('<thead>').css("text-align", "left").append($('<tr>').append($('<th>', {
                         text: element.name
                     })).append($('<th>', {
                         text: element.acronym
-                    })));
+                    }))));
                      for (var i = 0; i < element.departments.length; i++) {
                         $(classAcr).append($('<tr>').append($('<td>', {
                             text: element.departments[i].name
