@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-   <head>
-      <meta charset="utf-8">
-      <title></title>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   </head>
-   <body>
-      <!--<div id = "department-contents"> </div>-->
-      <script>
+<script>
       function populateDept(){
 
          $.ajax({
@@ -19,23 +10,18 @@
                   //go through all main departments
                  $.each(data, function(index, element) {
                     var classAcr ="." + element.acronym;
-                    $('body').append($('<div>').addClass(element.acronym + ""));
-                    $(classAcr).css({"border":"1px solid black", "width":"35%", "text-align":"left", "padding":"50px","margin":"auto"});
-
-                     $(classAcr).append($('<th>', {
-                         text: element.name
-                     }));
-                     $(classAcr).append($('<th>', {
-                         text: element.acronym
-                     }));
+                    $('#main').append($('<table class="aui">').addClass(element.acronym + ""));
+                    $(classAcr).append($('<thead>').css("text-align", "left").append($('<th>', {
+                        text: element.name
+                    })).append($('<th>', {
+                        text: element.acronym
+                    })));
                      for (var i = 0; i < element.departments.length; i++) {
-                        $(classAcr).append($('<tr>'));
-                        $(classAcr).append($('<td>', {
+                        $(classAcr).append($('<tr>').append($('<td>', {
                             text: element.departments[i].name
-                        }));
-                        $(classAcr).append($('<td>', {
+                        })).append($('<td>', {
                             text: element.departments[i].acronym
-                        }));
+                        })));
 
                      }
 
@@ -43,10 +29,5 @@
             }
          });
       }
-         populateDept();
-
-
-      </script>
-
-   </body>
-</html>
+   populateDept();
+</script>
