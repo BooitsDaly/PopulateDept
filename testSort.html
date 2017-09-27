@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Test</title>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   </head>
+
+   <body>
+      <script>
+      $.ajax({
+         type: 'GET',
+         url: 'https://dl.dropboxusercontent.com/s/sslmd5y53uusgfx/depts.json',
+         data: { get_param: 'value' },
+         dataType: 'json',
+         success: function (data) {
+
+
+         var array = $.map(data, function(value, index) {
+            return [value];
+         });
+         console.log(array);
+         array.sort();
+
+         //place on page
+         $.each(data, function(index, element) {
+
+           var classAcr ="." + array.acronym;
+           $('#content').prepend($('<table class="aui aui-sortable">').addClass(array.acronym + ""));
+           $(classAcr).append($('<thead>').css("text-align", "left").append($('<tr>').append($('<th>', {
+               text: array.name
+           })).append($('<th>', {
+               text: array.acronym
+           }))));
+            for (var i = 0; i < array.departments.length; i++) {
+               $(classAcr).append($('<tr>').append($('<td>', {
+                   text: array.departments[i].name
+               })).append($('<td>', {
+                   text: array.departments[i].acronym
+               })));
+           }
+       });
+                $("th").css("width","50%");
+   				$("th").css("width","50%");
+				$("table").append("<br>");
+				$("th").css("font-weight", "bold");
+				$("th").css("font-size", "35px");
+
+         }
+
+
+
+      })
+
+
+
+
+      </script>
+
+   </body>
+</html>
