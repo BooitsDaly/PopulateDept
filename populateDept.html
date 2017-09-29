@@ -9,7 +9,7 @@
                   //go through all main departments
                  $.each(data, function(index, element) {
                     var classAcr ="." + element.acronym;
-                    $('#content').prepend($('<table class="aui aui-sortable">').addClass(element.acronym + ""));
+                    $('#main-content').append($('<table class="aui aui-sortable">').addClass(element.acronym + ""));
                     $(classAcr).append($('<thead>').css("text-align", "left").append($('<tr>').append($('<th>', {
                         text: element.name
                     })).append($('<th>', {
